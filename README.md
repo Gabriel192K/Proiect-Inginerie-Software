@@ -37,8 +37,8 @@ A key feature of this project is the real-time visualization of the received dat
 Open your browser and go to ```http://localhost:5000```.
 
 ## Configuration
-USB Serial Communication: Settings can be adjusted in the settings.txt file to match the microcontroller's parameters.
-Graph Behavior: Modify the settings.txt file to configure how many data points are displayed.
+- USB Serial Communication: Settings can be adjusted in the settings.txt file to match the microcontroller's parameters.
+- Graph Behavior: Modify the settings.txt file to configure how many data points are displayed.
 
 ## Usage
 - Data Visualization: View the real-time graph on the main page.
