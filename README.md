@@ -4,7 +4,7 @@ This semester project for Software Engineering involves receiving real-time data
 - Pressure
 - Altitude
 
-## A key feature of this project is the real-time visualization of the received data on a graph within a browser. This is achieved through a web server created using Flask and Flask-SocketIO. Additionally, the project logs status information (such as errors, route connections, and disconnections) to a file and reads initial settings from a configuration file.
+### A key feature of this project is the real-time visualization of the received data on a graph within a browser. This is achieved through a web server created using Flask and Flask-SocketIO. Additionally, the project logs status information (such as errors, route connections, and disconnections) to a file and reads initial settings from a configuration file.
 
 # Features
 - Real-Time Data Reception: Receive data from a microcontroller with an attached sensor via USB.
