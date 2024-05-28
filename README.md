@@ -19,30 +19,28 @@ This semester project for Software Engineering involves receiving real-time data
 ## Clone the repository:
 
 ```git clone https://github.com/yourusername/Proiect-Inginerie-Software.git```
+
 ```cd Proiect-Inginerie-Software```
 
-Install dependencies:
+## Install dependencies:
 
-bash
+```pip install Flask==3.0.3```
 
-pip install -r requirements.txt
+```pip install Flask-SocketIO==5.3.6```
 
-Run the application:
+```pip install pyserial==3.5```
 
-bash
+## Run the application:
+```python main.py```
 
-    python app.py
+## Access the web interface:
+Open your browser and go to ```http://localhost:5000```.
 
-    Access the web interface:
-    Open your browser and go to http://localhost:5000.
+## Configuration
+USB Serial Communication: Settings can be adjusted in the settings.txt file to match the microcontroller's parameters.
+Graph Behavior: Modify the settings.txt file to configure how many data points are displayed.
 
-Configuration
-
-    USB Serial Communication: Settings can be adjusted in the config.json file to match the microcontroller's parameters.
-    Graph Behavior: Modify the graph_settings.json file to configure how many data points are displayed, timestamp accuracy, and other graph-related settings.
-
-Usage
-
-    Data Visualization: View the real-time graph on the main page.
-    Log Viewing: Navigate to the "Logs" tab to view status logs including errors, route connections, and disconnections.
-    Clear Logs: Press the "Clear Logs" button in the "Logs" tab to clear all status logs and the log file.
+## Usage
+- Data Visualization: View the real-time graph on the main page.
+- Log Viewing: Navigate to the "Logs" tab to view status logs including errors, route connections, and disconnections.
+- Clear Logs: Press the "Clear Logs" button in the "Logs" tab to clear all status logs and the log file.
