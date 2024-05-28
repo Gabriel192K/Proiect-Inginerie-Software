@@ -18,7 +18,7 @@ A key feature of this project is the real-time visualization of the received dat
 # Setup and Installation
 ## Clone the repository:
 
-```git clone https://github.com/yourusername/Proiect-Inginerie-Software.git```
+```git clone https://github.com/Gabriel192K/Proiect-Inginerie-Software.git```
 
 ```cd Proiect-Inginerie-Software```
 
