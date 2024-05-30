@@ -1,6 +1,220 @@
-[10:25:57] - Client disconnected from /logs
-[10:25:57] - Client connected to /
-[10:26:17] - Client disconnected from /
-[10:26:17] - Client connected to /contact
-[10:26:28] - Client disconnected from /contact
-[10:26:28] - Client connected to /
+[16:07:46] - Client disconnected from /charts
+[16:07:47] - Client connected to /charts
+[16:17:10] - Connected with sensor with: COM13, baud rate 9600
+[16:17:10] - Client connected to /charts
+[16:17:14] - Client disconnected from /charts
+[16:17:14] - Client connected to /charts
+[16:17:19] - Client disconnected from /charts
+[16:17:20] - Client connected to /charts
+[16:17:57] - Connected with sensor with: COM13, baud rate 9600
+[16:17:57] - Client connected to /charts
+[16:18:00] - Client connected to /charts
+[16:18:15] - Connected with sensor with: COM13, baud rate 9600
+[16:18:16] - Client connected to /charts
+[16:20:43] - Connected with sensor with: COM13, baud rate 9600
+[16:20:44] - Client connected to /charts
+[16:21:21] - Connected with sensor with: COM13, baud rate 9600
+[16:21:22] - Client connected to /charts
+[16:22:11] - Connected with sensor with: COM13, baud rate 9600
+[16:22:12] - Client connected to /charts
+[16:24:51] - Connected with sensor with: COM13, baud rate 9600
+[16:24:51] - Client connected to /charts
+[16:25:07] - Connected with sensor with: COM13, baud rate 9600
+[16:25:07] - Client connected to /charts
+[16:25:20] - Connected with sensor with: COM13, baud rate 9600
+[16:25:20] - Client connected to /charts
+[16:25:40] - Connected with sensor with: COM13, baud rate 9600
+[16:25:40] - Client connected to /charts
+[16:26:02] - Connected with sensor with: COM13, baud rate 9600
+[16:26:02] - Client connected to /charts
+[16:26:11] - Client connected to /charts
+[16:26:48] - Client disconnected from /charts
+[16:36:22] - Connected with sensor with: COM13, baud rate 9600
+[16:36:24] - Client connected to /charts
+[16:36:29] - Client disconnected from /charts
+[16:36:29] - Client connected to /
+[16:36:30] - Client disconnected from /
+[16:36:30] - Client connected to /charts
+[16:36:34] - Client disconnected from /charts
+[16:36:35] - Client connected to /charts
+[16:37:33] - Client connected to /charts
+[16:37:51] - Connected with sensor with: COM13, baud rate 9600
+[16:37:55] - Client connected to /charts
+[16:38:06] - Client connected to /charts
+[16:38:41] - Client disconnected from /charts
+[16:44:31] - Connected with sensor with: COM13, baud rate 9600
+[16:44:34] - Client connected to /charts
+[16:44:35] - Client connected to /charts
+[16:45:20] - Client disconnected from /charts
+[16:45:20] - Client disconnected from /charts
+[16:45:21] - Client connected to /charts
+[16:46:06] - Client disconnected from /charts
+[16:46:08] - Client connected to /charts
+[16:46:53] - Client disconnected from /charts
+[16:46:54] - Client connected to /charts
+[16:47:39] - Client disconnected from /charts
+[16:47:40] - Client connected to /charts
+[16:48:25] - Client disconnected from /charts
+[16:48:26] - Client connected to /charts
+[16:49:22] - Connected with sensor with: COM13, baud rate 9600
+[16:49:22] - Client connected to /charts
+[16:49:26] - Client disconnected from /charts
+[16:49:27] - Client connected to /charts
+[16:51:03] - Connected with sensor with: COM13, baud rate 9600
+[16:51:03] - Client connected to /charts
+[16:51:26] - Client connected to /charts
+[16:51:49] - Client disconnected from /charts
+[16:54:57] - Connected with sensor with: COM13, baud rate 9600
+[16:54:57] - Client connected to /charts
+[16:55:02] - Client disconnected from /charts
+[16:55:02] - Client connected to /charts
+[16:57:05] - Connected with sensor with: COM13, baud rate 9600
+[16:57:07] - Client connected to /charts
+[16:57:09] - Client connected to /charts
+[16:57:17] - Client connected to /charts
+[16:57:29] - Connected with sensor with: COM13, baud rate 9600
+[16:57:30] - Client connected to /charts
+[16:57:34] - Client connected to /
+[16:57:36] - Client connected to /charts
+[16:57:43] - Client connected to /
+[16:57:44] - Client connected to /charts
+[16:57:53] - Client connected to /charts
+[16:58:16] - Client disconnected from /charts
+[16:58:22] - Client disconnected from /charts
+[16:58:30] - Client disconnected from /charts
+[16:58:35] - Connected with sensor with: COM13, baud rate 9600
+[16:58:35] - Client connected to /charts
+[16:58:36] - Client connected to /
+[16:58:46] - Client connected to /charts
+[16:58:54] - Client connected to /
+[16:58:55] - Client connected to /charts
+[16:59:10] - Client connected to /logs
+[16:59:12] - Client connected to /charts
+[16:59:15] - Client connected to /charts
+[16:59:21] - Client disconnected from /charts
+[16:59:31] - Client disconnected from /charts
+[16:59:34] - Client connected to /charts
+[16:59:38] - Client disconnected from /
+[16:59:39] - Client connected to /
+[16:59:40] - Client connected to /charts
+[16:59:41] - Client disconnected from /charts
+[16:59:42] - Client disconnected from /
+[16:59:50] - Client connected to /
+[16:59:52] - Client connected to /charts
+[16:59:56] - Client connected to /
+[16:59:57] - Client disconnected from /charts
+[17:00:00] - Client disconnected from /logs
+[17:00:01] - Client disconnected from /charts
+[17:00:02] - Client connected to /charts
+[17:00:20] - Client disconnected from /charts
+[17:00:25] - Client disconnected from /charts
+[17:03:59] - Connected with sensor with: COM13, baud rate 9600
+[17:04:02] - Client connected to /
+[17:04:05] - Client connected to /charts
+[17:04:08] - Client connected to /
+[17:04:09] - Client connected to /charts
+[17:04:11] - Client connected to /
+[17:04:37] - Client connected to /charts
+[17:08:46] - Connected with sensor with: COM13, baud rate 9600
+[17:08:46] - Client connected to /charts
+[17:08:59] - Client connected to /charts
+[17:09:12] - Connected with sensor with: COM13, baud rate 9600
+[17:09:14] - Client connected to /charts
+[17:12:07] - Client connected to /charts
+[17:12:10] - Client connected to /
+[17:12:14] - Connected with sensor with: COM13, baud rate 9600
+[17:12:17] - Client connected to /
+[17:12:28] - Client connected to /charts
+[17:13:17] - Client disconnected from /
+[17:13:22] - Connected with sensor with: COM13, baud rate 9600
+[17:13:23] - Client connected to /charts
+[17:13:35] - Client connected to /charts
+[17:13:42] - Client connected to /charts
+[17:13:44] - Client connected to /
+[17:13:45] - Client connected to /charts
+[17:13:47] - Client connected to /
+[17:13:57] - Client connected to /charts
+[17:14:01] - Client disconnected from /charts
+[17:14:08] - Connected with sensor with: COM13, baud rate 9600
+[17:14:12] - Client connected to /
+[17:14:13] - Client connected to /charts
+[17:14:43] - Connected with sensor with: COM13, baud rate 9600
+[17:14:43] - Client connected to /charts
+[17:15:08] - Connected with sensor with: COM13, baud rate 9600
+[17:15:10] - Client connected to /charts
+[17:15:44] - Connected with sensor with: COM13, baud rate 9600
+[17:15:46] - Client connected to /charts
+[17:15:53] - Client disconnected from /charts
+[17:15:54] - Client connected to /charts
+[17:17:04] - Connected with sensor with: COM13, baud rate 9600
+[17:17:05] - Client connected to /charts
+[17:17:08] - Client disconnected from /charts
+[17:17:08] - Client connected to /charts
+[17:17:17] - Connected with sensor with: COM13, baud rate 9600
+[17:17:17] - Client connected to /charts
+[17:17:22] - Client disconnected from /charts
+[17:17:22] - Client connected to /
+[17:17:23] - Client disconnected from /
+[17:17:23] - Client connected to /charts
+[17:17:42] - Connected with sensor with: COM13, baud rate 9600
+[17:18:34] - Connected with sensor with: COM13, baud rate 9600
+[17:19:17] - Connected with sensor with: COM13, baud rate 9600
+[17:19:22] - Client connected to /
+[17:19:24] - Client connected to /charts
+[17:20:22] - Client disconnected from /
+[17:20:30] - Connected with sensor with: COM13, baud rate 9600
+[17:20:33] - Client connected to /charts
+[17:20:35] - Client disconnected from /charts
+[17:20:36] - Client connected to /charts
+[17:21:55] - Client disconnected from /charts
+[17:21:55] - Client connected to /charts
+[17:22:11] - Connected with sensor with: COM13, baud rate 9600
+[17:22:14] - Client connected to /
+[17:22:15] - Client connected to /charts
+[17:23:14] - Client disconnected from /
+[17:29:02] - Connected with sensor with: COM13, baud rate 9600
+[17:29:06] - Client connected to /charts
+[17:29:06] - Client connected to /charts
+[17:29:24] - Connected with sensor with: COM13, baud rate 9600
+[17:29:26] - Client connected to /charts
+[17:29:34] - Client connected to /charts
+[17:30:12] - Client disconnected from /charts
+[17:39:32] - Connected with sensor with: COM13, baud rate 9600
+[17:39:33] - Client connected to /charts
+[17:40:33] - Client disconnected from /charts
+[17:40:33] - Client connected to /charts
+[17:59:00] - Connected with sensor with: COM13, baud rate 9600
+[17:59:09] - Client connected to /
+[17:59:11] - Client disconnected from /
+[17:59:51] - Connected with sensor with: COM13, baud rate 9600
+[18:00:05] - Connected with sensor with: COM13, baud rate 9600
+[18:00:08] - Client connected to /
+[18:00:39] - Connected with sensor with: COM13, baud rate 9600
+[18:00:45] - Client connected to /
+[18:00:46] - Client disconnected from /
+[18:01:28] - Connected with sensor with: COM13, baud rate 9600
+[18:01:32] - Client connected to /charts
+[18:01:35] - Client disconnected from /charts
+[18:01:44] - Connected with sensor with: COM13, baud rate 9600
+[18:01:47] - Client connected to /
+[18:01:49] - Client disconnected from /
+[18:01:49] - Client connected to /charts
+[18:04:33] - Connected with sensor with: COM13, baud rate 9600
+[18:04:34] - Client connected to /charts
+[18:04:38] - Client disconnected from /charts
+[18:04:38] - Client connected to /charts
+[18:04:49] - Client disconnected from /charts
+[18:04:57] - Connected with sensor with: COM13, baud rate 9600
+[18:04:57] - Error reading data from sensor
+[18:05:03] - Client connected to /
+[18:05:05] - Client disconnected from /
+[18:05:05] - Client connected to /charts
+[18:07:01] - Connected with sensor with: COM13, baud rate 9600
+[18:07:02] - Client connected to /charts
+[18:07:06] - Client disconnected from /charts
+[18:07:06] - Client connected to /charts
+[18:07:11] - Client disconnected from /charts
+[18:07:19] - Connected with sensor with: COM13, baud rate 9600
+[18:07:23] - Client connected to /
+[18:07:24] - Client connected to /charts
+[18:08:23] - Client disconnected from /

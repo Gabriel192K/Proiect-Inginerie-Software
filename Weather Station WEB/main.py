@@ -31,14 +31,57 @@ def read_settings_file():
         exit(0)
 
 
+def get_initial_graph():
+    try:
+        # Read the last 3600 lines from the file
+        with open("graph.txt", "r") as f:
+            lines = f.readlines()[-int(settings['POINTS_ON_GRAPH']):]
+
+        # Parse each line into a dictionary
+        data = []
+        for line in lines:
+            timestamp, temperature, pressure, altitude = line.strip().split(',')
+            data.append({
+                'Timestamp': timestamp,
+                'Temperature': int(temperature),
+                'Pressure': int(pressure),
+                'Altitude': int(altitude)
+            })
+        return data
+    except IOError as e:
+        log(f"Error reading graph.txt: {e}")
+        return []
+
+
+def update_graph(timestamp, temperature, pressure, altitude):
+    try:
+        # Read all existing lines
+        with open("graph.txt", "r") as f:
+            lines = f.readlines()
+
+        # Append the new data to the end
+        new_line = f"{timestamp},{temperature},{pressure},{altitude}\n"
+        lines.append(new_line)
+
+        # If the number of lines exceeds max points on graph, remove the oldest lines
+        if len(lines) > int(settings['POINTS_ON_GRAPH']):
+            lines = lines[-int(settings['POINTS_ON_GRAPH']):]
+
+        # Write back the lines to the file
+        with open("graph.txt", "w") as f:
+            f.writelines(lines)
+    except IOError as e:
+        log(f"Error writing to graph.txt: {e}")
+
+
 def socket_io_run():
     while True:
         with threadLock:  # Ensure thread lock is on
             temperature = sensor_communication.get_temperature()
             pressure = sensor_communication.get_pressure()
             altitude = sensor_communication.get_altitude()
-
-        t = datetime.now().strftime("[%H:%M:%S]")
+        timestamp = datetime.now().strftime("[%H:%M:%S]")
+        update_graph(timestamp, temperature, pressure, altitude)
 
         socketio.emit('setPointsOnGraph',
                       {'pointsOnGraph': settings['POINTS_ON_GRAPH']},
@@ -46,7 +89,7 @@ def socket_io_run():
 
         # Emit data to socket
         socketio.emit('updateGraph',
-                      {'timestamp': t,
+                      {'timestamp': timestamp,
                             'temperature': temperature,
                             'pressure': pressure,
                             'altitude': altitude},
@@ -81,8 +124,6 @@ def contact():
 @socketio.on('connect', namespace='/')
 def handle_connect_root():
     log("Client connected to /")
-    if not socketio_thread.is_alive():  # If socket IO thread is not alive
-        socketio_thread.start()         # Start socket IO thread
 
 
 @socketio.on('disconnect', namespace='/')
@@ -93,6 +134,8 @@ def handle_disconnect_root():
 @socketio.on('connect', namespace='/charts')
 def handle_connect_charts():
     log("Client connected to /charts")
+    graph_data = get_initial_graph()
+    socketio.emit('initialData', graph_data, namespace='/charts')
 
 
 @socketio.on('disconnect', namespace='/charts')
@@ -152,7 +195,8 @@ def handle_clear_logs():
 
 if __name__ == '__main__':
     read_settings_file()
-    sensor_communication.begin(settings['COM_PORT'],int(settings['BAUD_RATE']),int(settings['TIMEOUT']))
+    sensor_communication.begin(settings['COM_PORT'], int(settings['BAUD_RATE']), int(settings['TIMEOUT']))
     socketio_thread = Thread(target=socket_io_run)  # Create thread for socket
     socketio_thread.daemon = True  # Make thread daemon
+    socketio_thread.start()
     socketio.run(app=app, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)  # Run the socket

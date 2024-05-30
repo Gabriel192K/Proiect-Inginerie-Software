@@ -47,7 +47,11 @@ document.addEventListener('DOMContentLoaded', function()
                             // Show labels at a readable interval
                             return index % Math.ceil(values.length / 5) === 0 ? value : '';
                         }
-                    }
+                    },
+                    bounds: 'data', // Fit to the data width
+                    offset: true, // Adjusted by the data's data time
+                    // Add some padding to the right of the graph
+                    max: moment().add(1, 'minute').toDate() // Adjust the duration as needed
                 }],
                 yAxes:
                 [{
@@ -81,6 +85,24 @@ document.addEventListener('DOMContentLoaded', function()
         pressure: { min: 0, max: 200, label: 'Pressure (kPa)' },
         altitude: { min: 0, max: 8848, label: 'Altitude (m)' }
     };
+
+    socket.on('initialData', function(data)
+    {
+        data.forEach(function(entry)
+        {
+            var newDataPoints =
+            {
+                temperature: { x: moment(entry.Timestamp.slice(1, -1), 'HH:mm:ss').toDate(), y: entry.Temperature },
+                pressure: { x: moment(entry.Timestamp.slice(1, -1), 'HH:mm:ss').toDate(), y: entry.Pressure },
+                altitude: { x: moment(entry.Timestamp.slice(1, -1), 'HH:mm:ss').toDate(), y: entry.Altitude }
+            };
+
+            Object.keys(newDataPoints).forEach(function(key) {
+                dataStore[key].push(newDataPoints[key]);
+            });
+        });
+        updateChart();
+    });
 
     socket.on('setPointsOnGraph', function(data)
     {

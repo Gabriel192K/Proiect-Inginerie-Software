@@ -29,6 +29,7 @@ class SensorCommunication:
         self.serial_thread.daemon = True
         self.serial_thread.start()
         log(f"Connected with sensor with: {self.com_port}, baud rate {self.baud_rate}")
+        time.sleep(1)
 
     def run(self):
         while True:
