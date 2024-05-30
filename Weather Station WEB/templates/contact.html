@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .container
+        {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            padding: 2em;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+            margin-top: 2em; /* Space between nav and container */
+            margin-bottom: 2em;
+        }
+
+        h1
+        {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            color: #fff; /* White text */
+        }
+
+        .contact-info
+        {
+            margin-top: 2em;
+            font-size: 1em;
+        }
+
+        .contact-info a
+        {
+            color: #fff; /* White text */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover
+        {
+            color: #9b59b6; /* Light purple color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/"><img src="{{ url_for('static', filename='favicon.ico') }}" alt="Logo"></a>
+        <a href="/charts">Charts</a>
+        <a href="/logs">Logs</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <div class="container">
+        <h1>Contact</h1>
+        <div class="contact-info">
+            <p>GitHub: <a href="https://github.com/Gabriel192K" target="_blank">Gabriel192K</a></p>
+            <p>Phone: +123-456-7890</p>
+            <p>Email: <a href="mailto:business@example.com">business@example.com</a></p>
+            <p>Website: <a href="https://yourbusinesswebsite.com" target="_blank">yourbusinesswebsite.com</a></p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Roteș Gabriel. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="static/footer.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/contact');
+    </script>
+</body>
+</html>

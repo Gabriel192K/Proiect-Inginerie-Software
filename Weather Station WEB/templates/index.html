@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .container
+        {
+            width: 60%;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+            margin-top: 2em; /* Space between nav and container */
+            margin-bottom: 2em;
+        }
+
+        h1
+        {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            color: #fff; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/"><img src="{{ url_for('static', filename='favicon.ico') }}" alt="Logo"></a>
+        <a href="/charts">Charts</a>
+        <a href="/logs">Logs</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Weather Station</h1>
+        <p>Explore real-time environmental data visualization from a microcontroller.</p>
+    </div>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Roteș Gabriel. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="static/footer.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/');
+    </script>
+</body>
+</html>

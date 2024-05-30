@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .container
+        {
+            width: 100%;
+            flex: 1;
+            padding: 1em 0em 1em 0em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-container
+        {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .select-container
+        {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .select-container select
+        {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            appearance: none;
+            background-color: #fff;
+            width: 200px;
+            color: #333;
+            font-family: 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .select-container select:hover
+        {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .select-container select:hover ~ select
+        {
+            color: #333;
+        }
+
+        .select-container select:focus
+        {
+            outline: none;
+            box-shadow: 0 0 0 2px #fff;
+        }
+
+        .select-container select:focus ~ select
+        {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/"><img src="{{ url_for('static', filename='favicon.ico') }}" alt="Logo"></a>
+        <a href="/charts">Charts</a>
+        <a href="/logs">Logs</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="chart-container"> <canvas id="chart"></canvas> </div>
+        <div class="select-container">
+            <select id="select-data">
+                <option value="temperature" selected>Temperature</option>
+                <option value="pressure">Pressure</option>
+                <option value="altitude">Altitude</option>
+            </select>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Roteș Gabriel. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="static/chart.js"></script>
+    <script src="static/footer.js"></script>
+</body>
+</html>
