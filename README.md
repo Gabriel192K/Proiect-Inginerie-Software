@@ -31,7 +31,7 @@ A key feature of this project is the real-time visualization of the received dat
 ```pip install pyserial==3.5```
 
 ## Run the application:
-```python main.py```
+Using ```PyCharm Community Edition```
 
 ## Access the web interface:
 Open your browser and go to ```http://localhost:5000```.
