@@ -20,8 +20,13 @@ document.addEventListener('DOMContentLoaded', function()
         {
             responsive: true,
             maintainAspectRatio: true,
-            tooltips: {
-                enabled: false, // Disable tooltips
+            tooltips:
+            {
+                enabled: false // Disable tooltips
+            },
+            legend:
+            {
+                display: false
             },
             scales:
             {

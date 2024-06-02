@@ -1,10 +1,27 @@
 from datetime import datetime
 
 
-def log(message):
-    timestamp = datetime.now().strftime("[%H:%M:%S]")
+def append(path, content):
     try:
-        with open("logs.txt", "a") as f:          # Open file and append it
-            f.write(f"{timestamp} - {message}\n")
-    except IOError as e:                          # Raise exception if failed
-        print(f"Error writing to file: {e}")
+        with open(path, "a") as file:
+            file.write(f"{content}\n")
+        return True
+    except IOError as error:
+        print(f"Error opening file {path}: {error}")
+    return False
+
+
+def erase(path):
+    try:
+        with open(path, 'w'):
+            pass
+        return True
+    except IOError as error:
+        print(f"Error opening file {path}: {error}")
+    return False
+
+
+def log(path, content):
+    timestamp = datetime.now().strftime("[%H:%M:%S]")
+    append(path, f"{timestamp} - {content}")
+

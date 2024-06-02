@@ -7,7 +7,7 @@ from flask_socketio import SocketIO
 import time
 from threading import Thread, Lock
 from datetime import datetime
-from Logger import log
+from Logger import erase, log
 
 threadLock = Lock()
 sensor_communication = SensorCommunication(threadLock)
@@ -24,10 +24,10 @@ def read_settings_file():
                 key, value = map(str.strip, line.split('='))
                 settings[key] = value
     except FileNotFoundError:
-        log(f"Settings file not found: {"settings.txt"}")
+        log("logs.txt", f"Settings file not found: settings.txt")
         exit(0)
     except Exception as e:
-        log(f"Error reading settings file: {e}")
+        log("logs.txt", f"Error reading settings file: {e}")
         exit(0)
 
 
@@ -49,7 +49,7 @@ def get_initial_graph():
             })
         return data
     except IOError as e:
-        log(f"Error reading graph.txt: {e}")
+        log("logs.txt", f"Error reading graph.txt: {e}")
         return []
 
 
@@ -71,7 +71,7 @@ def update_graph(timestamp, temperature, pressure, altitude):
         with open("graph.txt", "w") as f:
             f.writelines(lines)
     except IOError as e:
-        log(f"Error writing to graph.txt: {e}")
+        log("logs.txt", f"Error writing to graph.txt: {e}")
 
 
 def socket_io_run():
@@ -99,73 +99,69 @@ def socket_io_run():
 
 @app.route('/')
 def index():
-    print("Accessing /")
     return render_template('index.html')
 
 
 @app.route('/charts')
 def charts():
-    print("Accessing /charts")
     return render_template('charts.html')
 
 
 @app.route('/logs')
 def logs():
-    print("Accessing /logs")
     return render_template('logs.html')
 
 
 @app.route('/contact')
 def contact():
-    print("Accessing /contact")
     return render_template('contact.html')
 
 
 @socketio.on('connect', namespace='/')
 def handle_connect_root():
-    log("Client connected to /")
+    log("logs.txt", "Client connected to /")
 
 
 @socketio.on('disconnect', namespace='/')
 def handle_disconnect_root():
-    log("Client disconnected from /")
+    log("logs.txt", "Client disconnected from /")
 
 
 @socketio.on('connect', namespace='/charts')
 def handle_connect_charts():
-    log("Client connected to /charts")
+    log("logs.txt", "Client connected to /charts")
     graph_data = get_initial_graph()
     socketio.emit('initialData', graph_data, namespace='/charts')
 
 
 @socketio.on('disconnect', namespace='/charts')
 def handle_disconnect_charts():
-    log("Client disconnected from /charts")
+    log("logs.txt", "Client disconnected from /charts")
 
 
 @socketio.on('connect', namespace='/logs')
 def handle_connect_logs():
-    log("Client connected to /logs")
+    log("logs.txt", "Client connected to /logs")
 
 
 @socketio.on('disconnect', namespace='/logs')
 def handle_disconnect_logs():
-    log("Client disconnected from /logs")
+    log("logs.txt", "Client disconnected from /logs")
 
 
 @socketio.on('connect', namespace='/contact')
 def handle_connect_contact():
-    log("Client connected to /contact")
+    log("logs.txt", "Client connected to /contact")
 
 
 @socketio.on('disconnect', namespace='/contact')
 def handle_disconnect_contact():
-    log("Client disconnected from /contact")
+    log("logs.txt", "Client disconnected from /contact")
 
 
 @socketio.on('connect', namespace='/logs')
 def handle_connect_logs():
-    log("Client connected to /logs")
+    log("logs.txt", "Client connected to /logs")
     try:
         with open("logs.txt", "r") as file:  # Open file and append it
             for line in file:
@@ -178,19 +174,13 @@ def handle_connect_logs():
 
 @socketio.on('disconnect', namespace='/logs')
 def handle_disconnect_logs():
-    log("Client disconnected from /logs")
+    log("logs.txt", "Client disconnected from /logs")
 
 
 @socketio.on('clearLogs', namespace='/logs')
 def handle_clear_logs():
-    print("Clearing logs")
-    try:
-        with open("logs.txt", "w") as file:
-            file.write("")  # Clear the file
+    if erase("logs.txt"):
         socketio.emit('logsCleared', namespace='/logs')
-    except IOError as e:
-        print(f"Error clearing file: {e}")
-    print("Logs cleared")
 
 
 if __name__ == '__main__':
