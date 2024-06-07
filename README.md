@@ -1,46 +1,70 @@
-# Description
-This semester project for Software Engineering involves receiving real-time data from a microcontroller equipped with a sensor via a USB connection to a PC. The data includes information on various environmental properties such as:
-- Temperature
-- Pressure
-- Altitude
+# BMP280 Sensor Data Logging and Web Interface
 
-A key feature of this project is the real-time visualization of the received data on a graph within a browser. This is achieved through a web server created using Flask and Flask-SocketIO. Additionally, the project logs status information (such as errors, route connections, and disconnections) to a file and reads initial settings from a configuration file.
+## Project Overview
 
-# Features
-- Real-Time Data Reception: Receive data from a microcontroller with an attached sensor via USB.
-- Web-Based Visualization: Real-time graphing of temperature, pressure, and altitude data in a web browser.
-- Configurable Graph Behavior: Adjust the number of points plotted, enable accurate timestamps for each data point, and configure other graph settings.
-- USB Serial Communication Settings: Easily configure USB serial communication parameters for seamless data reception.
-- Status Logging: Log status information including errors, route connections, and disconnections to a file.
-- Log Management: View the log file directly in the web interface, and clear logs with a button click, including the option to clear the log file.
-- Web Server Implementation: Built using Flask and Flask-SocketIO for robust real-time data handling.
+This project utilizes a BMP280 sensor connected to an ATmega328PB microcontroller. The microcontroller reads temperature, pressure, and altitude data from the BMP280 over the TWI bus and sends this data via UART to a UART-to-USB converter, which then communicates with a computer through a COM port. The received data follows a custom transmission scheme and is processed using a multi-threaded Python application. A Flask web server with Flask-SocketIO handles data visualization and user interaction.
 
-# Setup and Installation
-## Clone the repository:
+## Hardware Setup
+- BMP280 Sensor: Measures temperature, pressure, and altitude.
+- ATmega328PB Microcontroller: Reads sensor data over TWI and sends it over UART.
+- UART-to-USB Converter: Connects microcontroller to the computer via USB.
+- Computer: Receives data on a COM port.
 
-```git clone https://github.com/Gabriel192K/Proiect-Inginerie-Software.git```
+## Software Components
+### Microcontroller Code
+- TWI Communication: Reads data from the BMP280 sensor.
+- UART Communication: Sends data to the computer in a predefined format.
 
-```cd Proiect-Inginerie-Software```
+### Python Application
+- PySerial: Handles serial communication with the microcontroller.
+- Threading: Processes incoming data on a separate thread with thread locking to prevent race conditions.
+- Flask & Flask-SocketIO: Implements the web server and handles real-time data updates.
 
-## Install dependencies:
+## Communication Protocol
+The microcontroller sends data using a custom scheme:
+```START_BYTE, TEMPERATURE_BYTE, PRESSURE_BYTE, ALTITUDE_MSB_BYTE, ALTITUDE_LSB_BYTE, STOP_BYTE```
+- Temperature: 0-255°C
+- Pressure: 0-255 kPa
+- Altitude: 0-65,535 meters (16-bit value)
 
-```pip install Flask==3.0.3```
+## Data Processing
+- Threading and Locking: Incoming data is processed on an independent thread with thread locking to ensure safe access to shared variables.
+- Data Storage: Latest data points are stored and used for graph plotting and logging.
 
-```pip install Flask-SocketIO==5.3.6```
+## Web Interface
+### Pages
+- Root Page: Welcome message and navigation bar.
+- Graph Page: Displays a real-time graph of the selected parameter (temperature, pressure, altitude). The graph auto-scales to focus on the current range of values.
+- Logs Page: Displays the content of logs.txt and includes a button to clear the logs.
+- Contact Page: Provides contact information.
 
-```pip install pyserial==3.5```
-
-## Run the application:
-```python main.py```
-
-## Access the web interface:
-Open your browser and go to ```http://localhost:5000```.
+### Features
+- Real-Time Graphing: Select and plot different parameters with auto-scaling.
+- Log Viewing and Management: View and clear log files directly from the web interface.
 
 ## Configuration
-- USB Serial Communication: Settings can be adjusted in the settings.txt file to match the microcontroller's parameters.
-- Graph Behavior: Modify the settings.txt file to configure how many data points are displayed.
+Settings are stored in a configuration file and include:
+- COM Port: Number assigned to the COM port.
+- Baud Rate: Communication speed.
+- Timeout: Serial read timeout in seconds.
+- Points on Graph: Number of data points to display on the graph.
+
+## Logging
+The Logger module manages logging with three functions:
+- append(): Appends a line of text to log.txt.
+- log(): Appends a line of text with a timestamp.
+- erase(): Clears the log file.
 
 ## Usage
-- Data Visualization: View the real-time graph on the main page.
-- Log Viewing: Navigate to the "Logs" tab to view status logs including errors, route connections, and disconnections.
-- Clear Logs: Press the "Clear Logs" button in the "Logs" tab to clear all status logs and the log file.
+- Setup Hardware: Connect BMP280 sensor to the ATmega328PB and set up the UART-to-USB converter.
+- Configure Software: Update the configuration file with the correct COM port settings.
+- Run Python Application: Start the application to begin reading sensor data and serving the web interface.
+- Access Web Interface: Navigate to the provided URL to view and interact with the data.
+
+## Clone the repository:
+- ```git clone https://github.com/Gabriel192K/Proiect-Inginerie-Software.git```
+
+## Install dependencies:
+- ```pip install Flask==3.0.3```
+- ```pip install Flask-SocketIO==5.3.6```
+- ```pip install pyserial==3.5```
