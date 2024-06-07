@@ -1,43 +1,44 @@
 from serial import Serial, SerialException
-from threading import Thread
+from threading import Thread, Lock
 import time
 from Logger import log
 
 
 class SensorCommunication:
-    def __init__(self, thread_lock):
-        self.serial_instance = None
-        self.serial_thread = None
-        self.com_port = ''
-        self.baud_rate = 0
-        self.timeout = 0
-        self.thread_lock = thread_lock
-        self.temperature = 0
-        self.pressure = 0
-        self.altitude = 0
+    def __init__(self, thread_lock: Lock) -> None:
+        self._serial_instance = None
+        self._serial_thread = None
+        self._com_port: str = ''
+        self._baud_rate: int = 0
+        self._timeout: int = 0
+        self._thread_lock: Lock = thread_lock
+        self._temperature: int = 0
+        self._pressure: int = 0
+        self._altitude: int = 0
 
-    def begin(self, com_port, baud_rate, timeout):
-        self.com_port = com_port
-        self.baud_rate = baud_rate
-        self.timeout = timeout
+    def begin(self, com_port: str, baud_rate: int, timeout: int) -> bool:
+        self._com_port = com_port
+        self._baud_rate = baud_rate
+        self._timeout = timeout
         try:
-            self.serial_instance = Serial(port=self.com_port, baudrate=self.baud_rate, timeout=self.timeout)
+            self._serial_instance = Serial(port=self._com_port, baudrate=self._baud_rate, timeout=self._timeout)
         except SerialException:
             log("logs.txt", "Can't connect to sensor, check COM port or wiring")
             exit(0)
-        self.serial_thread = Thread(target=self.run)
-        self.serial_thread.daemon = True
-        self.serial_thread.start()
-        log("logs.txt", f"Connected with sensor with: {self.com_port}, baud rate {self.baud_rate}")
+        self._serial_thread = Thread(target=self.run)
+        self._serial_thread.daemon = True
+        self._serial_thread.start()
+        log("logs.txt", f"Connected with sensor with: {self._com_port}, baud rate {self._baud_rate}")
         time.sleep(1)
+        return True
 
-    def run(self):
+    def run(self) -> None:
         state = "WAIT_FOR_START"
-        data = []
+        data: list = []
         while True:
             try:
-                if self.serial_instance.in_waiting:
-                    byte = self.serial_instance.read(1)
+                if self._serial_instance.in_waiting:
+                    byte = self._serial_instance.read(1)
                     if state == "WAIT_FOR_START":
                         if byte == b'\x02':  # Start byte
                             data = []
@@ -50,10 +51,10 @@ class SensorCommunication:
 
                     elif state == "WAIT_FOR_STOP":
                         if byte == b'\x03':  # Stop byte
-                            with self.thread_lock:
-                                self.temperature = data[0][0]
-                                self.pressure = data[1][0]
-                                self.altitude = data[2][0] | (data[3][0] << 8)
+                            with self._thread_lock:
+                                self._temperature = data[0][0]
+                                self._pressure = data[1][0]
+                                self._altitude = data[2][0] | (data[3][0] << 8)
                         else:
                             log("logs.txt", "Invalid stop byte on UART communication")
                         state = "WAIT_FOR_START"
@@ -61,11 +62,11 @@ class SensorCommunication:
                 log("logs.txt", f"Error reading data from sensor: {e}")
             time.sleep(0.1)  # Shorter sleep to ensure we catch data promptly
 
-    def get_temperature(self):
-        return self.temperature
+    def get_temperature(self) -> int:
+        return self._temperature
 
-    def get_pressure(self):
-        return self.pressure
+    def get_pressure(self) -> int:
+        return self._pressure
 
-    def get_altitude(self):
-        return self.altitude
+    def get_altitude(self) -> int:
+        return self._altitude

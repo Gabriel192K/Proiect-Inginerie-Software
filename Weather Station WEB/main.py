@@ -9,12 +9,12 @@ from threading import Thread, Lock
 from datetime import datetime
 from Logger import erase, log
 
-threadLock = Lock()
-sensor_communication = SensorCommunication(threadLock)
-app = Flask(__name__)
-socketio = SocketIO(app)
+threadLock: Lock = Lock()
+sensor_communication: SensorCommunication = SensorCommunication(threadLock)
+app: Flask = Flask(__name__)
+socketio: SocketIO = SocketIO(app)
 socketio_thread = None
-settings = {}
+settings: dict = {}
 
 
 def read_settings_file():
@@ -26,38 +26,35 @@ def read_settings_file():
     except FileNotFoundError:
         log("logs.txt", f"Settings file not found: settings.txt")
         exit(0)
-    except Exception as e:
-        log("logs.txt", f"Error reading settings file: {e}")
+    except Exception as error:
+        log("logs.txt", f"Error reading settings file: {error}")
         exit(0)
 
 
 def get_initial_graph():
     try:
-        # Read the last 3600 lines from the file
-        with open("graph.txt", "r") as f:
-            lines = f.readlines()[-int(settings['POINTS_ON_GRAPH']):]
-
-        # Parse each line into a dictionary
-        data = []
-        for line in lines:
-            timestamp, temperature, pressure, altitude = line.strip().split(',')
-            data.append({
-                'Timestamp': timestamp,
-                'Temperature': int(temperature),
-                'Pressure': int(pressure),
-                'Altitude': int(altitude)
-            })
-        return data
-    except IOError as e:
-        log("logs.txt", f"Error reading graph.txt: {e}")
+        with open("graph.txt", "r") as file:
+            lines = file.readlines()[-int(settings['POINTS_ON_GRAPH']):]
+    except IOError as error:
+        log("logs.txt", f"Error reading graph.txt: {error}")
         return []
+    data = []
+    for line in lines:
+        timestamp, temperature, pressure, altitude = line.strip().split(',')
+        data.append({
+            'Timestamp': timestamp,
+            'Temperature': int(temperature),
+            'Pressure': int(pressure),
+            'Altitude': int(altitude)
+        })
+    return data
 
 
 def update_graph(timestamp, temperature, pressure, altitude):
     try:
         # Read all existing lines
-        with open("graph.txt", "r") as f:
-            lines = f.readlines()
+        with open("graph.txt", "r") as file:
+            lines = file.readlines()
 
         # Append the new data to the end
         new_line = f"{timestamp},{temperature},{pressure},{altitude}\n"
@@ -68,10 +65,10 @@ def update_graph(timestamp, temperature, pressure, altitude):
             lines = lines[-int(settings['POINTS_ON_GRAPH']):]
 
         # Write back the lines to the file
-        with open("graph.txt", "w") as f:
-            f.writelines(lines)
-    except IOError as e:
-        log("logs.txt", f"Error writing to graph.txt: {e}")
+        with open("graph.txt", "w") as file:
+            file.writelines(lines)
+    except IOError as error:
+        log("logs.txt", f"Error writing to graph.txt: {error}")
 
 
 def socket_io_run():

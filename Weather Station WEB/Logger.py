@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def append(path, content):
+def append(path: str, content: str) -> bool:
     try:
         with open(path, "a") as file:
             file.write(f"{content}\n")
@@ -11,7 +11,7 @@ def append(path, content):
     return False
 
 
-def erase(path):
+def erase(path: str) -> bool:
     try:
         with open(path, 'w'):
             pass
@@ -21,7 +21,7 @@ def erase(path):
     return False
 
 
-def log(path, content):
+def log(path: str, content: str):
     timestamp = datetime.now().strftime("[%H:%M:%S]")
-    append(path, f"{timestamp} - {content}")
+    return append(path, f"{timestamp} - {content}")
 
